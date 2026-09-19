@@ -1,67 +1,77 @@
 # Python Number to Words Converter
 
-This project is a Python utility that converts integers into their English word representation. It supports a wide range of numbers from 0 to trillions and efficiently handles edge cases such as round tens, hundreds, and large numbers.
+A simple Python project that converts non-negative integers into their English word representation.
 
 ## Features
 
-- Converts integers to their English word equivalent.
-- Supports numbers from 0 to trillions.
-- Handles numbers like 100, 1000, 1,000,000 with correct word formatting.
-- Efficient for both small and large numbers.
+- Converts numbers from 0 up to 999 trillion
+- Handles units, tens, hundreds, thousands, millions, billions, and trillions
+- Uses recursion to convert larger numbers
+- Uses hyphens for compound numbers, such as `twenty-three`
 
 ## How It Works
 
-The main function `number_to_word(num: int) -> str` recursively breaks down an integer and maps it to its English word equivalent using pre-defined lists (`UNDER_20`, `TENS`) and a dictionary (`ABOVE_100`).
+The `number_to_word()` function converts a number into words by breaking it down into smaller parts.
 
-#### Example:
+It uses three lookup tables from `constant.py`:
+
+- `UNDER_20`: words for numbers from 0 to 19
+- `TENS`: words for the tens from 20 to 90
+- `ABOVE_100`: words for hundred, thousand, million, billion, and trillion
+
+For numbers from 20 to 99, the function combines a tens word with a units word. For numbers 100 or greater, it finds the largest matching unit, converts the part before it, and then converts the remainder recursively.
+
+## Example
 
 ```python
-from src.number_to_word import number_to_word
-
-print(number_to_word(123456789))   # Output: "one hundred twenty-three million four hundred fifty-six thousand seven hundred eighty-nine"
-print(number_to_word(1001))        # Output: "one thousand one"
-print(number_to_word(1000000))     # Output: "one million"
+print(number_to_word(123456789))
+print(number_to_word(1001))
+print(number_to_word(1000000))
 ```
-### Installation
-To use this project in your environment:
 
-1.	Clone the repository:
-    git clone https://github.com/mahnazghssm/number_to_word.git
-2.	Navigate to the project directory:
-    cd number_to_word
-3.	Install dependencies (if any) using:
+Output:
 
-    pip install -r requirements.txt
+```text
+one hundred twenty-three million four hundred fifty-six thousand seven hundred eighty-nine
+one thousand one
+one million
+```
 
-4.	Run the script:
+## Project Structure
 
-    python main.py
+```text
+.
+├── .gitignore
+├── README.md
+└── src
+    ├── constant.py
+    └── main.py
+```
 
-### Project Structure
-•	src/constant.py: Defines constants used for number-to-word mappings like UNDER_20, TENS, and ABOVE_100.
-•	src/number_to_word.py: Contains the logic for converting numbers to words.
-•	main.py: A sample script for testing the number_to_word function with different inputs.
+- `src/constant.py`: the word lists and number mappings
+- `src/main.py`: the number-to-word function and example numbers
+- `README.md`: project documentation
+- `.gitignore`: files and folders ignored by Git
 
-### Usage
+## Requirements
 
-The project can be used for applications such as:
+- Python 3.9 or later
 
-•	Converting financial amounts to words for reporting.
-•	Generating check amounts in words.
-•	Any other task requiring the conversion of numbers into human-readable text.
+No external packages are required.
 
-### Running the Examples
+## Installation
 
-To run the predefined examples, simply execute:
-python main.py
+Clone the repository:
 
-You’ll see output like:
+```bash
+git clone https://github.com/mahnazghssm/Number-To-Word.git
+cd Number-To-Word
+```
 
-one billion two hundred thirty-four million five hundred sixty-seven thousand eight hundred ninety
-twelve thousand three hundred forty-five
-zero
-one hundred trillion
+## Usage
 
-### License
+Run the example file from the project root:
 
-This project is licensed under the MIT License. See the LICENSE file for more information.
+```bash
+python -m src.main
+```
