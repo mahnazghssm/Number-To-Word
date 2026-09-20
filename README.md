@@ -7,6 +7,7 @@ A simple Python project that converts non-negative integers into their English w
 - Converts numbers from 0 up to 999 trillion
 - Handles units, tens, hundreds, thousands, millions, billions, and trillions
 - Uses recursion to convert larger numbers
+- Uses hyphens for compound numbers, such as `twenty-three`
 - Includes basic tests with pytest
 
 ## How It Works
@@ -24,6 +25,8 @@ For numbers from 20 to 99, the function combines a tens word with a units word. 
 ## Example
 
 ```python
+from src.main import number_to_word
+
 print(number_to_word(123456789))
 print(number_to_word(1001))
 print(number_to_word(1000000))
@@ -32,7 +35,7 @@ print(number_to_word(1000000))
 Output:
 
 ```text
-one hundred twenty three million four hundred fifty six thousand seven hundred eighty nine
+one hundred twenty-three million four hundred fifty-six thousand seven hundred eighty-nine
 one thousand one
 one million
 ```
@@ -43,23 +46,25 @@ one million
 .
 ├── .gitignore
 ├── README.md
-├── tests
-│   └── test_main.py
-└── src
-    ├── constant.py
-    └── main.py
+├── pytest.ini
+├── src
+│   ├── constant.py
+│   └── main.py
+└── tests
+    └── test_main.py
 ```
 
 - `src/constant.py`: the word lists and number mappings
 - `src/main.py`: the number-to-word function and example numbers
 - `tests/test_main.py`: basic tests for the number-to-word function
+- `pytest.ini`: pytest configuration
 - `README.md`: project documentation
 - `.gitignore`: files and folders ignored by Git
 
 ## Requirements
 
 - Python 3.9 or later
-- pytest
+- pytest (only needed to run the tests)
 
 ## Installation
 
@@ -70,7 +75,7 @@ git clone https://github.com/mahnazghssm/Number-To-Word.git
 cd Number-To-Word
 ```
 
-Install pytest:
+To run the tests, install pytest:
 
 ```bash
 pip install pytest
