@@ -11,7 +11,7 @@ def number_to_word(num: int) -> str:
         if remainder == 0:
             return TENS[num // 10]
 
-        return TENS[num // 10] + " " + UNDER_20[remainder]
+        return f"{TENS[num // 10]}-{UNDER_20[remainder]}"
 
     pivot: int = max([key for key in ABOVE_100 if key <= num])
 
