@@ -75,3 +75,7 @@ Run the example file from the project root:
 ```bash
 python -m src.main
 ```
+
+## License
+
+This project is licensed under the MIT License.
